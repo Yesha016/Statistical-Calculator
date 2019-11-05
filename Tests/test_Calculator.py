@@ -1,7 +1,7 @@
 import unittest
 
 from Calculator.Calculator import Calculator
-from CsvReader import CsvReader
+from CsvReader.CsvReader import CsvReader
 
 
 class MyTestCase(unittest.TestCase):
@@ -16,7 +16,7 @@ class MyTestCase(unittest.TestCase):
         calculator = Calculator()
         self.assertEqual(calculator.add(2, 2), 4)
 
-    def test_add_method_calculator(self):
+    def test_add_method_calculatorCSV(self):
         calculator = Calculator()
         test_data = CsvReader('Data/Addition.csv').data
         for row in test_data:

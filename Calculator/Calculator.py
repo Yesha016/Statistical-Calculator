@@ -1,5 +1,6 @@
 def addition(a, b):
-    return a + b
+    return int(a) + int(b)
+
 
 class Calculator:
     result = 0
