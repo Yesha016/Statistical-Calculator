@@ -8,15 +8,23 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         self.stats = StatisticCal()
+        self.row_data = CsvStatsReader('Data/Statistical_Data.csv')
+        self.stats_row = self.row_data.columns['stats']
 
     def test_instantiate_calculator(self):
         self.assertIsInstance(self.stats, StatisticCal)
 
     def test_method_mean(self):
-        row_data = CsvStatsReader('Data/Statistical_Data.csv')
-        stats = row_data.columns['stats']
-        mean = row_data.columns['mean'][0]
-        self.assertEqual(self.stats.mean(stats), round(float(mean), 2) )
+        mean = round(float(self.row_data.columns['mean'][0]), 2)
+        self.assertEqual(self.stats.mean(self.stats_row), mean)
+        self.assertEqual(self.stats.result, mean)
+
+    def test_method_median(self):
+        median = round(float(self.row_data.columns['median'][0]), 2)
+        self.assertEqual(self.stats.median(self.stats_row), median)
+        self.assertEqual(self.stats.result, median)
+
+
 
 
 if __name__ == '__main__':
