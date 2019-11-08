@@ -1,6 +1,7 @@
 import unittest
 
 from CsvReader.CsvStatsReader import CsvStatsReader
+from StaticMethods.roundOff import roundOff
 from Statistics.StatisticCal import StatisticCal
 
 
@@ -15,17 +16,17 @@ class MyTestCase(unittest.TestCase):
         self.assertIsInstance(self.stats, StatisticCal)
 
     def test_method_mean(self):
-        mean = round(float(self.row_data.columns['mean'][0]), 2)
+        mean = roundOff(float(self.row_data.columns['mean'][0]))
         self.assertEqual(self.stats.mean(self.stats_row), mean)
         self.assertEqual(self.stats.result, mean)
 
     def test_method_median(self):
-        median = round(float(self.row_data.columns['median'][0]), 2)
+        median = roundOff(float(self.row_data.columns['median'][0]))
         self.assertEqual(self.stats.median(self.stats_row), median)
         self.assertEqual(self.stats.result, median)
 
     def test_method_mode(self):
-        mode = round(float(self.row_data.columns['mode'][0]), 2)
+        mode = roundOff(float(self.row_data.columns['mode'][0]))
         self.assertEqual(self.stats.mode(self.stats_row), mode)
         self.assertEqual(self.stats.result, mode)
 

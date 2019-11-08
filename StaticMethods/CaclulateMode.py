@@ -1,10 +1,11 @@
 from collections import defaultdict
-from StaticMethods.Exceptions import exception
+from StaticMethods.roundOff import roundOff
 
 
 def calMode(array):
     length = len(array)
     count = defaultdict(list)
+    mode = 0
     for i in range(length):
         count[array[i]].append(1)
 
@@ -13,5 +14,5 @@ def calMode(array):
         if count[i] > k:
             k = count[i]
             mode = i
-
-    return round(float(mode), 2)
+    # TODO: Add condition to check if multiple value has highest numbers
+    return roundOff(mode)
