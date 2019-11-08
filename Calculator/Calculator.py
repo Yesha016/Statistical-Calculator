@@ -1,5 +1,5 @@
 from StaticMethods.addition import addition
-
+from StaticMethods.subtraction import subtraction
 
 class Calculator:
     result = 0
@@ -11,4 +11,7 @@ class Calculator:
         self.result = addition(a, b)
         return self.result
 
+    def subtract(self, a, b):
+        self.result = subtraction (a, b)
+        return self.result
 
