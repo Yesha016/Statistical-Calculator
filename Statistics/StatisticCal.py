@@ -1,6 +1,7 @@
 # from statistics import mean
 from StaticMethods.CalculateMedian import calMedian
 from StaticMethods.CalulcateMean import calMean
+from StaticMethods.PopulationStandardDeviation import stddev
 
 
 class StatisticCal:
@@ -15,4 +16,8 @@ class StatisticCal:
 
     def median(self, a):
         self.result = calMedian(a)
+        return self.result
+
+    def sd(self, a):
+        self.result = stddev(a)
         return self.result

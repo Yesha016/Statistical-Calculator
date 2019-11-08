@@ -24,6 +24,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.median(self.stats_row), median)
         self.assertEqual(self.stats.result, median)
 
+    def test_method_sd(self):
+        sd = round(float(self.row_data.columns['sd'][0]), 2)
+        self.assertEqual(self.stats.sd(self.stats_row), sd)
+        self.assertEqual(self.stats.result, sd)
+
 
 
 
