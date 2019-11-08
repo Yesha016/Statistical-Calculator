@@ -1,6 +1,7 @@
 from StaticMethods.addition import addition
 from StaticMethods.subtraction import subtraction
 from StaticMethods.multiplication import multiplication
+from StaticMethods.division import division
 
 class Calculator:
     result = 0
@@ -18,5 +19,9 @@ class Calculator:
 
     def multiply(self, a, b):
         self.result = multiplication(a, b)
+        return self.result
+
+    def divide(self, a, b):
+        self.result = round(division(a, b), 9)
         return self.result
 
