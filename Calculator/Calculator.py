@@ -2,6 +2,7 @@ from StaticMethods.addition import addition
 from StaticMethods.subtraction import subtraction
 from StaticMethods.multiplication import multiplication
 from StaticMethods.division import division
+from StaticMethods.square import square
 
 class Calculator:
     result = 0
@@ -23,5 +24,9 @@ class Calculator:
 
     def divide(self, a, b):
         self.result = round(division(a, b), 9)
+        return self.result
+
+    def square(self, a):
+        self.result = square(a)
         return self.result
 
