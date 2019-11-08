@@ -1,5 +1,4 @@
-def addition(a, b):
-    return int(a) + int(b)
+from StaticMethods.addition import addition
 
 
 class Calculator:
@@ -17,7 +16,6 @@ class Calculator:
             if b is None:
                 raise ValueError
             self.result = addition(int(a), int(b))
-            print(self.result)
             return self.result
         except ValueError:
             print("Please specify value a or b")
