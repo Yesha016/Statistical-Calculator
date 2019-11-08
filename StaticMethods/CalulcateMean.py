@@ -1,4 +1,5 @@
 from StaticMethods.Exceptions import exception
+from StaticMethods.roundOff import roundOff
 
 
 def calMean(a):
@@ -7,4 +8,4 @@ def calMean(a):
         exception(a)
         total += float(val)
 
-    return round(float(total / len(a)), 2)
+    return roundOff(total / len(a))

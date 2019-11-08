@@ -1,16 +1,19 @@
 from StaticMethods.Exceptions import exception
+from StaticMethods.addition import addition
+from StaticMethods.division import division
+from StaticMethods.roundOff import roundOff
 
 
 def calMedian(a):
     length = len(a)
-    half = int(length / 2)
+    half = int(division(2, length) )
 
     for val in a:
         exception(val)
 
     if length % 2 == 0:
-        median = float(float(a[half - 1]) + float(a[half])) / 2
+        median = division(2, addition(a[half - 1], a[half]))
     else:
         median = a[half]
 
-    return round(float(median), 2)
+    return roundOff(median)
