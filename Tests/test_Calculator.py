@@ -14,14 +14,17 @@ class MyTestCase(unittest.TestCase):
 
     def test_add_method_calculator(self):
         calculator = Calculator()
-        self.assertEqual(calculator.add(2, 2), 4)
+        result = 4
+        self.assertEqual(calculator.add(2, 2), result)
+        self.assertEqual(calculator.result, result)
 
     def test_add_method_calculatorCSV(self):
         calculator = Calculator()
         test_data = CsvReader('Data/Addition.csv').data
         for row in test_data:
-            self.assertEqual(calculator.add(row['Value 1'], row['Value 2']), int(row['Result']))
-            self.assertEqual(calculator.result, int(row['Result']))
+            result = float(row['Result'])
+            self.assertEqual(calculator.add(row['Value 1'], row['Value 2']), result)
+            self.assertEqual(calculator.result, result)
 
 
 if __name__ == '__main__':
