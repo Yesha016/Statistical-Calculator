@@ -74,13 +74,27 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(calculator.square(4), result)
         self.assertEqual(calculator.result, result)
 
-    def test_square_method_calculator(self):
+    def test_square_method_calculatorCSV(self):
         calculator = Calculator()
         test_data = CsvReader('Data/Square.csv').data
         for row in test_data:
             result = float(row['Result'])
             self.assertEqual(calculator.square(row['Value 1']), result)
             self.assertEqual(calculator.result, result)
+
+    def test_sqrt_method_calculator(self):
+        calculator = Calculator()
+        result = 2
+        self.assertEqual(calculator.squareroot(4), result)
+        self.assertEqual(calculator.result, result)
+
+    def test_sqrt_method_calculatorCSV(self):
+        calculator = Calculator()
+        test_data = CsvReader('Data/Square Root.csv').data
+        for row in test_data:
+            result = float(row['Result'])
+            self.assertAlmostEqual(calculator.squareroot(row['Value 1']), result)
+            self.assertAlmostEqual(calculator.result, result)
 
 
 if __name__ == '__main__':

@@ -3,6 +3,7 @@ from StaticMethods.subtraction import subtraction
 from StaticMethods.multiplication import multiplication
 from StaticMethods.division import division
 from StaticMethods.square import square
+from StaticMethods.squareroot import squareroot
 
 class Calculator:
     result = 0
@@ -28,5 +29,9 @@ class Calculator:
 
     def square(self, a):
         self.result = square(a)
+        return self.result
+
+    def squareroot(self, a):
+        self.result = squareroot(a)
         return self.result
 
