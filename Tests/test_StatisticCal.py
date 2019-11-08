@@ -29,6 +29,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.sd(self.stats_row), sd)
         self.assertEqual(self.stats.result, sd)
 
+    def test_method_vpp(self):
+        vpp = round(float(self.row_data.columns['vpp'][0]), 2)
+        self.assertEqual(self.stats.vpp(self.stats_row), vpp)
+        self.assertEqual(self.stats.result, vpp)
+
 
 
 
