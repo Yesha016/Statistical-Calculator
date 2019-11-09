@@ -41,6 +41,15 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.vpp(self.stats_row), vpp)
         self.assertEqual(self.stats.result, vpp)
 
+    def test_method_zscore(self):
+        mean = self.row_data.columns['mean'][0]
+        sd = self.row_data.columns['sd'][0]
+        zscore = roundOff(self.row_data.columns['zscore'][0])
+
+        # zscore = roundOff(float(row['zscore']))
+        self.assertEqual(self.stats.zscore(self.stats_row[0], mean, sd), zscore)
+        self.assertEqual(self.stats.result, zscore)
+
     def test_method_pcc(self):
         cc = roundOff(float(self.row_data.columns['CC'][0]))
         self.assertEqual(self.stats.pcc(self.stats_row, self.yStats_row), cc)

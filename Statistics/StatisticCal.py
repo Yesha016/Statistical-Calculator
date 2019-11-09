@@ -5,6 +5,7 @@ from StaticMethods.CalulcateMean import calMean
 from StaticMethods.PopulationCorrelationCoefficient import calcPCC
 from StaticMethods.PopulationStandardDeviation import stddev
 from StaticMethods.VariancePopulationProportion import varpp
+from StaticMethods.Zscore import zscore
 
 
 class StatisticCal:
@@ -31,6 +32,10 @@ class StatisticCal:
 
     def vpp(self, a):
         self.result = varpp(a)
+        return self.result
+
+    def zscore(self, a, mean, sd):
+        self.result = zscore(a, mean, sd)
         return self.result
 
     def pcc(self, a, b):
