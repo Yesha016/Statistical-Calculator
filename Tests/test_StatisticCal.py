@@ -11,6 +11,7 @@ class MyTestCase(unittest.TestCase):
         self.stats = StatisticCal()
         self.row_data = CsvStatsReader('Data/Statistical_Data.csv')
         self.stats_row = self.row_data.columns['stats']
+        self.yStats_row = self.row_data.columns['YStats']
 
     def test_instantiate_calculator(self):
         self.assertIsInstance(self.stats, StatisticCal)
@@ -31,14 +32,20 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.result, mode)
 
     def test_method_sd(self):
-        sd = round(float(self.row_data.columns['sd'][0]), 2)
+        sd = roundOff(float(self.row_data.columns['sd'][0]))
         self.assertEqual(self.stats.sd(self.stats_row), sd)
         self.assertEqual(self.stats.result, sd)
 
     def test_method_vpp(self):
-        vpp = round(float(self.row_data.columns['vpp'][0]), 2)
+        vpp = roundOff(float(self.row_data.columns['vpp'][0]))
         self.assertEqual(self.stats.vpp(self.stats_row), vpp)
         self.assertEqual(self.stats.result, vpp)
+
+    def test_method_pcc(self):
+        cc = roundOff(float(self.row_data.columns['CC'][0]))
+        self.assertEqual(self.stats.pcc(self.stats_row, self.yStats_row), cc)
+        self.assertEqual(self.stats.result, cc)
+
 
 if __name__ == '__main__':
     unittest.main()

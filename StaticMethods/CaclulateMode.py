@@ -11,9 +11,6 @@ def calMode(array):
 
     k = count[0]
     for i in count:
-        print("i: ", i)
-        print("k: ", k)
-        print("count: ",count[i])
         if count[i] > k:
             k = count[i]
             mode = i

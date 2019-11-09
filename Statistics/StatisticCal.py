@@ -2,6 +2,7 @@
 from StaticMethods.CaclulateMode import calMode
 from StaticMethods.CalculateMedian import calMedian
 from StaticMethods.CalulcateMean import calMean
+from StaticMethods.PopulationCorrelationCoefficient import calcPCC
 from StaticMethods.PopulationStandardDeviation import stddev
 from StaticMethods.VariancePopulationProportion import varpp
 
@@ -30,4 +31,8 @@ class StatisticCal:
 
     def vpp(self, a):
         self.result = varpp(a)
+        return self.result
+
+    def pcc(self, a, b):
+        self.result = calcPCC(a, b)
         return self.result
