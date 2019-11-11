@@ -6,6 +6,7 @@ from StaticMethods.PopulationCorrelationCoefficient import calcPCC
 from StaticMethods.PopulationStandardDeviation import stddev
 from StaticMethods.VariancePopulationProportion import varpp
 from StaticMethods.Zscore import zscore
+from StaticMethods.confidenceInterval import confidenceInterval
 
 
 class StatisticCal:
@@ -40,4 +41,8 @@ class StatisticCal:
 
     def pcc(self, a, b):
         self.result = calcPCC(a, b)
+        return self.result
+
+    def confInt(self, a):
+        self.result = confidenceInterval(a)
         return self.result

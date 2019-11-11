@@ -55,6 +55,12 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.pcc(self.stats_row, self.yStats_row), cc)
         self.assertEqual(self.stats.result, cc)
 
+    def test_method_confidence_interval(self):
+        ci = roundOff(float(self.row_data.columns['CI'][0]))
+        # self.assertEqual(self.stats.confInt(self.stats_row), ci)
+        self.assertEqual(self.stats.confInt(self.stats_row), ci)
+        self.assertEqual(self.stats.result, ci)
+
 
 if __name__ == '__main__':
     unittest.main()
