@@ -1,6 +1,9 @@
-from StaticMethods.Exceptions import exception
 from StaticMethods.PopulationStandardDeviation import stddev
+from StaticMethods.roundOff import roundOff
+from StaticMethods.square import square
+
 
 def varpp(a):
     val = stddev(a)
-    return round(float(val) ** 2, 2)
+    result = square(val)
+    return roundOff(result)

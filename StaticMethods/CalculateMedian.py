@@ -6,7 +6,7 @@ from StaticMethods.roundOff import roundOff
 
 def calMedian(a):
     length = len(a)
-    half = int(division(2, length) )
+    half = int(division(2, length))
 
     for val in a:
         exception(val)
