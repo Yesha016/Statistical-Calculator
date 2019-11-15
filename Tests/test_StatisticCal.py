@@ -1,7 +1,9 @@
 import unittest
 
+from CsvReader.CsvSampleData import randomData
 from CsvReader.CsvStatsReader import CsvStatsReader
 from StaticMethods.roundOff import roundOff
+from StaticMethods.square import square
 from Statistics.StatisticCal import StatisticCal
 
 
@@ -12,6 +14,7 @@ class MyTestCase(unittest.TestCase):
         self.row_data = CsvStatsReader('Data/Statistical_Data.csv')
         self.stats_row = self.row_data.columns['stats']
         self.yStats_row = self.row_data.columns['YStats']
+        self.sampleData = randomData(self.stats_row)
 
     def test_instantiate_calculator(self):
         self.assertIsInstance(self.stats, StatisticCal)
@@ -20,6 +23,11 @@ class MyTestCase(unittest.TestCase):
         mean = roundOff(float(self.row_data.columns['mean'][0]))
         self.assertEqual(self.stats.mean(self.stats_row), mean)
         self.assertEqual(self.stats.result, mean)
+
+    def test_method_sample_mean(self):
+        expected = self.stats.mean(self.sampleData)
+        self.assertEqual(self.stats.mean(self.sampleData), expected)
+        self.assertNotEqual(self.stats.mean(self.sampleData), square(expected))
 
     def test_method_median(self):
         median = roundOff(float(self.row_data.columns['median'][0]))
