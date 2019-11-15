@@ -54,6 +54,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.vpp(self.stats_row), vpp)
         self.assertEqual(self.stats.result, vpp)
 
+    def test_method_sample_variance(self):
+        expected = self.stats.vpp(self.sampleData)
+        self.assertEqual(self.stats.vpp(self.sampleData), expected)
+        self.assertNotEqual(self.stats.vpp(self.sampleData), square(expected))
+
     def test_method_zscore(self):
         mean = self.row_data.columns['mean'][0]
         sd = self.row_data.columns['sd'][0]
