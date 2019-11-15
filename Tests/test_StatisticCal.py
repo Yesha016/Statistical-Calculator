@@ -44,6 +44,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.sd(self.stats_row), sd)
         self.assertEqual(self.stats.result, sd)
 
+    def test_method_sample_sd(self):
+        expected = self.stats.sd(self.sampleData)
+        self.assertEqual(self.stats.sd(self.sampleData), expected)
+        self.assertNotEqual(self.stats.sd(self.sampleData), square(expected))
+
     def test_method_vpp(self):
         vpp = roundOff(float(self.row_data.columns['vpp'][0]))
         self.assertEqual(self.stats.vpp(self.stats_row), vpp)
