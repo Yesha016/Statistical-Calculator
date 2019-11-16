@@ -83,6 +83,11 @@ class MyTestCase(unittest.TestCase):
         result = roundOff(0.1)
         self.assertEqual(self.stats.varProp(self.stats_row, corr), result)
 
+    def test_method_sample_prop(self):
+        corr = 4
+        expected = self.stats.varProp(self.sampleData, corr)
+        self.assertEqual(self.stats.varProp(self.sampleData, corr), expected)
+
 
 if __name__ == '__main__':
     unittest.main()
