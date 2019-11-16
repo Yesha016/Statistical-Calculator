@@ -23,6 +23,7 @@ class MyTestCase(unittest.TestCase):
         mean = roundOff(float(self.row_data.columns['mean'][0]))
         self.assertEqual(self.stats.mean(self.stats_row), mean)
         self.assertEqual(self.stats.result, mean)
+        self.assertNotEqual(self.stats.result, square(mean))
 
     def test_method_sample_mean(self):
         expected = self.stats.mean(self.sampleData)
@@ -33,11 +34,13 @@ class MyTestCase(unittest.TestCase):
         median = roundOff(float(self.row_data.columns['median'][0]))
         self.assertEqual(self.stats.median(self.stats_row), median)
         self.assertEqual(self.stats.result, median)
+        self.assertNotEqual(self.stats.result, square(median))
 
     def test_method_mode(self):
         mode = roundOff(float(self.row_data.columns['mode'][0]))
         self.assertEqual(self.stats.mode(self.stats_row), mode)
         self.assertEqual(self.stats.result, mode)
+        self.assertNotEqual(self.stats.result, square(mode))
 
     def test_method_sd(self):
         sd = roundOff(float(self.row_data.columns['sd'][0]))
@@ -53,6 +56,7 @@ class MyTestCase(unittest.TestCase):
         vpp = roundOff(float(self.row_data.columns['vpp'][0]))
         self.assertEqual(self.stats.vpp(self.stats_row), vpp)
         self.assertEqual(self.stats.result, vpp)
+        self.assertNotEqual(self.stats.result, square(vpp))
 
     def test_method_sample_variance(self):
         expected = self.stats.vpp(self.sampleData)
@@ -67,6 +71,7 @@ class MyTestCase(unittest.TestCase):
         # zscore = roundOff(float(row['zscore']))
         self.assertEqual(self.stats.zscore(self.stats_row[0], mean, sd), zscore)
         self.assertEqual(self.stats.result, zscore)
+        self.assertNotEqual(self.stats.result, square(zscore))
 
     def test_method_pcc(self):
         cc = roundOff(float(self.row_data.columns['CC'][0]))
@@ -82,6 +87,7 @@ class MyTestCase(unittest.TestCase):
         corr = 10
         result = roundOff(0.1)
         self.assertEqual(self.stats.varProp(self.stats_row, corr), result)
+        self.assertNotEqual(self.stats.result, square(result))
 
     def test_method_sample_prop(self):
         corr = 4
