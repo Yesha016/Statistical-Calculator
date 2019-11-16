@@ -74,10 +74,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.stats.result, cc)
 
     def test_method_confidence_interval(self):
-        ci = roundOff(float(self.row_data.columns['CI'][0]))
-        # self.assertEqual(self.stats.confInt(self.stats_row), ci)
-        self.assertEqual(self.stats.confInt(self.stats_row), ci)
-        self.assertEqual(self.stats.result, ci)
+        conf = 95
+        result = [roundOff(4710.97), roundOff(6901.43)]
+        self.assertEqual(self.stats.confInt(self.stats_row, conf), (result[0], result[1]))
 
 
 if __name__ == '__main__':

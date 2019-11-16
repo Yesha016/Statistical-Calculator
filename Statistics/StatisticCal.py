@@ -43,6 +43,6 @@ class StatisticCal:
         self.result = calcPCC(a, b)
         return self.result
 
-    def confInt(self, a):
-        self.result = confidenceInterval(a)
+    def confInt(self, a, val):
+        self.result = confidenceInterval(a, val)
         return self.result
