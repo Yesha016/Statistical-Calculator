@@ -78,6 +78,11 @@ class MyTestCase(unittest.TestCase):
         result = [roundOff(4710.97), roundOff(6901.43)]
         self.assertEqual(self.stats.confInt(self.stats_row, conf), (result[0], result[1]))
 
+    def test_method_variance_pop_prop(self):
+        corr = 10
+        result = roundOff(0.1)
+        self.assertEqual(self.stats.varProp(self.stats_row, corr), result)
+
 
 if __name__ == '__main__':
     unittest.main()

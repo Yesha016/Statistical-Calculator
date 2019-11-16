@@ -4,9 +4,10 @@ from StaticMethods.CalculateMedian import calMedian
 from StaticMethods.CalulcateMean import calMean
 from StaticMethods.PopulationCorrelationCoefficient import calcPCC
 from StaticMethods.PopulationStandardDeviation import stddev
-from StaticMethods.VariancePopulationProportion import varpp
+from StaticMethods.PopulationVariance import varpp
 from StaticMethods.Zscore import zscore
 from StaticMethods.confidenceInterval import confidenceInterval
+from StaticMethods.varianceproportion import varProportion
 
 
 class StatisticCal:
@@ -45,4 +46,8 @@ class StatisticCal:
 
     def confInt(self, a, val):
         self.result = confidenceInterval(a, val)
+        return self.result
+
+    def varProp(self, a, c):
+        self.result = varProportion(a, c)
         return self.result
