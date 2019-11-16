@@ -5,15 +5,15 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Statistical Sample Mean (Karan Shah)
-- Statistical Standard Deviation (Karan Shah)
+- Statistical Sample Standard Deviation (Karan Shah)
 - Statistical Sample Variance (Karan Shah)
-- Statistical Variance population proportion (Karan Shah)
+- Statistical Variance population proportion (Yesha Majmudar)
 - Statistical Variance Sample proportion (Karan Shah)
 - Additional Operations (Karan Shah)
 - Random (Sample) CSV data reader (Karan Shah)
 - Proportion calculator (Karan Shah)
 - Not equal unit test (Karan shah)
-- File nor found eception (Karan Shah)
+- File not found exception (Karan Shah)
  
 ### Changed
 - Statistical Confidence Interval (Karan Shah)
@@ -30,8 +30,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Exceptional static method (Yesha Majmudar)
 - Calculator methods (Addition, Subtraction, Multiplication, Division, Square and Root) (Yesha Majmudar)
+- Statistical Population Standard Deviation (Yesha Majmudar)
 - Statistical Mean Method and unit tests (Karan Shah)
-- Statistical Median method (Karan Shah)
+- Statistical Median method (Yesha Majmudar)
 - Statistical Mode method (Karan Shah)
 - Statistical zscore (Yesha Majmudar)
 - Statistical Population Correlation Coefficient (Karan Shah)
@@ -56,7 +57,8 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0] - 2019-11-02 
  
-## Created Initial Project Structure (Yesha Majmudar)
+## Created 
+- Initial Project Structure (Yesha Majmudar)
 
 ### Added
 - Calculator Module (Yesha Majmudar)
