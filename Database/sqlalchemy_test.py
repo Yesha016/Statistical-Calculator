@@ -11,30 +11,32 @@ session = Session()
 Base = declarative_base()
 
 class Customer(Base):
-    __tablename__ = 'Customer'
+    __tablename__ = 'customer'
 
     id = Column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    username = Column(String)
-    email = Column(String)
-    address = Column(String)
-    town = Column(String)
+    first_name = Column(String(100), nullable=False)
+    last_name = Column(String(100), nullable=False)
+    username = Column(String(50), nullable=False)
+    email = Column(String(200), nullable=False)
+    address = Column(String(200), nullable=False)
+    town = Column(String(200), nullable=False)
+    orders = relationship("Order", backref='customer')
 
 class Item(Base):
-    __tablename__ = 'Item'
+    __tablename__ = 'items'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    cost_price = Column(Numeric)
-    selling_price = Column(Numeric)
-    quantity = Column(Integer)
+    name = Column(String(100), nullable=False)
+    cost_price = Column(Numeric(10, 2), nullable=False)
+    selling_price = Column(Numeric(10, 2), nullable=False)
+    quantity = Column(Integer(), nullable=False)
+    orders = relationship("OrderLine", backref='item')
 
 class Order(Base):
     __tablename__ = 'orders'
     id = Column(Integer(), primary_key=True)
     customer_id = Column(Integer(), ForeignKey('customers.id'))
-
+    line_items = relationship("OrderLine", backref='order')
 
 class OrderLine(Base):
     __tablename__ = 'order_lines'
