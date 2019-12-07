@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, String, Numeric
+from sqlalchemy import Column, Integer, String, Numeric, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 
@@ -29,6 +29,21 @@ class Item(Base):
     cost_price = Column(Numeric)
     selling_price = Column(Numeric)
     quantity = Column(Integer)
+
+class Order(Base):
+    __tablename__ = 'orders'
+    id = Column(Integer(), primary_key=True)
+    customer_id = Column(Integer(), ForeignKey('customers.id'))
+
+
+class OrderLine(Base):
+    __tablename__ = 'order_lines'
+    id = Column(Integer(), primary_key=True)
+    order_id = Column(Integer(), ForeignKey('orders.id'))
+    item_id = Column(Integer(), ForeignKey('items.id'))
+    quantity = Column(Integer())
+    order = relationship("Order", backref='order_lines')
+    item = relationship("Item")
 
 Base.metadata.create_all(engine)
 
@@ -101,3 +116,4 @@ i8 = Item(name='Water Bottle', cost_price=20.89, selling_price=25, quantity=50)
 
 session.add_all([i1, i2, i3, i4, i5, i6, i7, i8])
 session.commit()
+
