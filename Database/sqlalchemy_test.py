@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, or_, and_, not_, desc, func, distinct
+from sqlalchemy import create_engine, or_, and_, not_, desc, func, distinct, text
 from sqlalchemy.orm import sessionmaker, relationship
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
@@ -236,3 +236,7 @@ session.query(Item).filter(
     Item.name.ilike("W%")
 ).delete(synchronize_session='fetch')
 session.commit()
+
+session.query(Customer).filter(text("first_name = 'John'")).all()
+session.query(Customer).filter(text("town like 'Nor%'")).all()
+session.query(Customer).filter(text("town like 'Nor%'")).order_by(text("first_name, id desc")).all()
