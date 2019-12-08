@@ -1,7 +1,10 @@
 from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, or_, and_, not_, desc, func, distinct, text
+from sqlalchemy import create_engine, or_, and_, not_, desc, func, distinct, text, update
 from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.exc import IntegrityError
+from datetime import datetime
+from pprint import pprint
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 
@@ -65,7 +68,7 @@ c2 = Customer(first_name='Scott',
 
 session.add(c1)
 session.add(c2)
-session.new
+
 session.commit()
 
 c3 = Customer(
@@ -126,7 +129,7 @@ line_item3 = OrderLine(order=o2, item=i1, quantity=1)
 line_item3 = OrderLine(order=o2, item=i2, quantity=4)
 
 session.add_all([o1, o2])
-session.new
+
 session.commit()
 
 o3 = Order(customer=c1)
@@ -240,3 +243,31 @@ session.commit()
 session.query(Customer).filter(text("first_name = 'John'")).all()
 session.query(Customer).filter(text("town like 'Nor%'")).all()
 session.query(Customer).filter(text("town like 'Nor%'")).order_by(text("first_name, id desc")).all()
+
+def dispatch_order(order_id):
+    # check whether order_id is valid or not
+    order = session.query(Order).get(order_id)
+
+    if not order:
+        raise ValueError("Invalid order id: {}.".format(order_id))
+
+    if order.date_shipped:
+        pprint("Order already shipped.")
+        return
+
+    try:
+        for i in order.order_lines:
+            i.item.quantity = i.item.quantity - i.quantity
+
+        order.date_shipped = datetime.now()
+        session.commit()
+        pprint("Transaction completed.")
+
+    except IntegrityError as e:
+        pprint(e)
+        pprint("Rolling back ...")
+        session.rollback()
+        pprint("Transaction failed.")
+
+        dispatch_order(1)
+        dispatch_order(2)
