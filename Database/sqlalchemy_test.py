@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Numeric, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
+from pprint import pprint
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 
@@ -150,3 +151,7 @@ for ol in c1.orders[1].order_lines:
 session.query(Customer).all()
 session.query(Item).all()
 session.query(Order).all()
+
+session.query(Customer).count()
+session.query(Item).count()
+session.query(Order).count()
