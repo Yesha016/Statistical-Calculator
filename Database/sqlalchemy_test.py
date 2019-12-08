@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, Numeric, ForeignKey
+from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, or_, and_, not_
 from sqlalchemy.orm import sessionmaker, relationship
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
@@ -162,3 +162,22 @@ session.query(Order).first()
 session.query(Customer).get(1)
 session.query(Item).get(1)
 session.query(Order).get(100)
+
+session.query(Customer).filter(Customer.first_name == 'John').all()
+session.query(Customer).filter(Customer.id <= 5, Customer.town == "Norfolk").all()
+session.query(Customer).filter(or_(
+    Customer.town == 'Peterbrugh',
+    Customer.town == 'Norfolk'
+)).all()
+
+session.query(Customer).filter(and_(
+    Customer.first_name == 'John',
+    Customer.town == 'Norfolk'
+)).all()
+
+session.query(Customer).filter(and_(
+    Customer.first_name == 'John',
+    not_(
+        Customer.town == 'Peterbrugh',
+    )
+)).all()
