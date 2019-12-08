@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, or_, and_, not_
+from sqlalchemy import create_engine, or_, and_, not_, desc
 from sqlalchemy.orm import sessionmaker, relationship
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
@@ -193,3 +193,7 @@ session.query(Customer).limit(2).all()
 session.query(Customer).filter(Customer.address.ilike("%avenue")).limit(2).all()
 
 session.query(Customer).limit(2).offset(2).all()
+
+session.query(Item).filter(Item.name.ilike("wa%")).all()
+session.query(Item).filter(Item.name.ilike("wa%")).order_by(Item.cost_price).all()
+session.query(Item).filter(Item.name.ilike("wa%")).order_by(desc(Item.cost_price)).all()
