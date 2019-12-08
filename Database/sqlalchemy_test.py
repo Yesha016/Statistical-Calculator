@@ -158,3 +158,7 @@ session.query(Order).count()
 session.query(Customer).first()
 session.query(Item).first()
 session.query(Order).first()
+
+session.query(Customer).get(1)
+session.query(Item).get(1)
+session.query(Order).get(100)
