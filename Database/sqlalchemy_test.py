@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, or_, and_, not_, desc, func
+from sqlalchemy import create_engine, or_, and_, not_, desc, func, distinct
 from sqlalchemy.orm import sessionmaker, relationship
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
@@ -214,3 +214,11 @@ session.query(
     func.count("*").label('town_count'),
     Customer.town
 ).group_by(Customer.town).having(func.count("*") > 2).all()
+
+session.query(Customer.town).filter(Customer.id < 10).all()
+session.query(Customer.town).filter(Customer.id < 10).distinct().all()
+
+session.query(
+    func.count(distinct(Customer.town)),
+    func.count(Customer.town)
+).all()
