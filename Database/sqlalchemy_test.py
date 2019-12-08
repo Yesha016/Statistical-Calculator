@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, or_, and_, not_, desc
+from sqlalchemy import create_engine, or_, and_, not_, desc, func
 from sqlalchemy.orm import sessionmaker, relationship
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
@@ -204,3 +204,8 @@ session.query(
     Customer.first_name,
     Order.id,
 ).outerjoin(Order).all()
+
+session.query(func.count(Customer.id)).join(Order).filter(
+    Customer.first_name == 'John',
+    Customer.last_name == 'Green',
+).group_by(Customer.id).scalar()
