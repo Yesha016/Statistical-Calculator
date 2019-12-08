@@ -199,3 +199,8 @@ session.query(Item).filter(Item.name.ilike("wa%")).order_by(Item.cost_price).all
 session.query(Item).filter(Item.name.ilike("wa%")).order_by(desc(Item.cost_price)).all()
 
 session.query(Customer).join(Order).all()
+
+session.query(
+    Customer.first_name,
+    Order.id,
+).outerjoin(Order).all()
