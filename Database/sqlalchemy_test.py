@@ -231,3 +231,8 @@ session.query(Item).filter(
     Item.name.ilike("W%")
 ).update({"quantity": 60}, synchronize_session='fetch')
 session.commit()
+
+session.query(Item).filter(
+    Item.name.ilike("W%")
+).delete(synchronize_session='fetch')
+session.commit()
