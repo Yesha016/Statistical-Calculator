@@ -11,7 +11,7 @@ session = Session()
 Base = declarative_base()
 
 class Customer(Base):
-    __tablename__ = 'customer'
+    __tablename__ = 'customers'
 
     id = Column(Integer, primary_key=True)
     first_name = Column(String(100), nullable=False)
@@ -30,13 +30,11 @@ class Item(Base):
     cost_price = Column(Numeric(10, 2), nullable=False)
     selling_price = Column(Numeric(10, 2), nullable=False)
     quantity = Column(Integer(), nullable=False)
-    orders = relationship("OrderLine", backref='item')
 
 class Order(Base):
     __tablename__ = 'orders'
     id = Column(Integer(), primary_key=True)
     customer_id = Column(Integer(), ForeignKey('customers.id'))
-    line_items = relationship("OrderLine", backref='order')
 
 class OrderLine(Base):
     __tablename__ = 'order_lines'
@@ -67,7 +65,7 @@ c2 = Customer(first_name='Scott',
 
 session.add(c1)
 session.add(c2)
-
+session.new
 session.commit()
 
 c3 = Customer(
@@ -128,11 +126,12 @@ line_item3 = OrderLine(order=o2, item=i1, quantity=1)
 line_item3 = OrderLine(order=o2, item=i2, quantity=4)
 
 session.add_all([o1, o2])
+session.new
 session.commit()
 
 o3 = Order(customer=c1)
-orderline1 = OrderLine(order=o1,item=i1, quantity=5)
-orderline2 = OrderLine(order=o1,item=i2, quantity=10)
+orderline1 = OrderLine(item=i1, quantity=5)
+orderline2 = OrderLine(item=i2, quantity=10)
 
 session.add_all([o3])
 session.commit()
